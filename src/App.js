@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [state, setState] = useState("");
+  const [result, setResult] = useState("");
+  const onChange = (e) => {
+    setState(e.target.value);
+  };
+  const onClick = (value) => {
+    const result = value.split(" ").join(", ");
+    setResult(result);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <label htmlFor="쉼표">쉼표 변환기</label>{" "}
+      <input id="쉼표" type="text" value={state} onChange={onChange} />
+      <button onClick={() => onClick(state)}>변환</button>
+      결과 <p>{result}</p>
     </div>
   );
 }
