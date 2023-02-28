@@ -3,7 +3,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard/src";
 
 export default function CatchPI() {
   const [state, setState] = useState("");
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState([]);
   const onChange = (e) => {
     setState(e.target.value);
   };
@@ -16,8 +16,8 @@ export default function CatchPI() {
         return v.split("\t")[0];
       });
 
-    const result = [...new Set(arr)].join(", ");
-    setResult(result);
+    const result = [...new Set(arr)];
+    setResult([...result]);
     setState("");
   };
 
@@ -36,7 +36,18 @@ export default function CatchPI() {
         <button>변환하기</button>
       </form>
       <span>결과: </span>
-      <p>{result}</p>
+      <div>{result.join(", ")}</div>
+      <div>
+        {result.map((i) => {
+          const link = `https://catalog-tools.coupang.net/quality/products/${i}
+            /items/detail`;
+          return (
+            <div>
+              <a href={link}>{i}</a>
+            </div>
+          );
+        })}
+      </div>
       <CopyToClipboard text={result}>
         <button>복사</button>
       </CopyToClipboard>
