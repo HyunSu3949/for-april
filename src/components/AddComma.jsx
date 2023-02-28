@@ -17,8 +17,8 @@ export default function AddComma() {
         <label htmlFor="쉼표">쉼표 변환기</label>{" "}
         <input id="쉼표" type="text" value={state} onChange={onChange} />
         <button>변환</button>
-        결과 <p>{result}</p>
       </form>
+      <span>결과: </span> <p>{result}</p>
     </div>
   );
 }

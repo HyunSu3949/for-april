@@ -26,12 +26,13 @@ export default function CatchPI() {
         <textarea
           name="PI"
           id="PI"
-          cols="30"
+          cols="100"
           rows="10"
           onChange={onChange}
         ></textarea>
         <button>변환하기</button>
       </form>
+      <span>결과: </span>
       <p>{result}</p>
     </>
   );
