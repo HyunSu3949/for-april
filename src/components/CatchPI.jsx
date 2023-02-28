@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard/src";
+import { Link } from "react-router-dom";
 
 export default function CatchPI() {
   const [state, setState] = useState("");
@@ -39,11 +40,14 @@ export default function CatchPI() {
       <div>{result.join(", ")}</div>
       <div>
         {result.map((i) => {
-          const link = `https://catalog-tools.coupang.net/quality/products/${i}
-            /items/detail`;
+          const pi = i.trim();
+          console.log(pi, typeof pi);
+          const link = `https://catalog-tools.coupang.net/quality/products/${pi}/items/detail`;
           return (
             <div>
-              <a href={link}>{i}</a>
+              <a href={link} target="_blank">
+                {i}
+              </a>
             </div>
           );
         })}
