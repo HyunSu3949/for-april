@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard/src";
 
 export default function CatchPI() {
   const [state, setState] = useState("");
   const [result, setResult] = useState("");
-
   const onChange = (e) => {
     setState(e.target.value);
   };
@@ -18,7 +18,9 @@ export default function CatchPI() {
 
     const result = [...new Set(arr)].join(", ");
     setResult(result);
+    setState("");
   };
+
   return (
     <>
       <form onSubmit={onSubmit}>
@@ -29,11 +31,15 @@ export default function CatchPI() {
           cols="100"
           rows="10"
           onChange={onChange}
+          value={state}
         ></textarea>
         <button>변환하기</button>
       </form>
       <span>결과: </span>
       <p>{result}</p>
+      <CopyToClipboard text={result}>
+        <button>복사</button>
+      </CopyToClipboard>
     </>
   );
 }

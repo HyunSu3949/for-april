@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard/src";
 
 export default function AddComma() {
   const [state, setState] = useState("");
@@ -10,6 +11,7 @@ export default function AddComma() {
     e.preventDefault();
     const result = state.split(" ").join(", ");
     setResult(result);
+    setState("");
   };
   return (
     <div>
@@ -18,7 +20,10 @@ export default function AddComma() {
         <input id="쉼표" type="text" value={state} onChange={onChange} />
         <button>변환</button>
       </form>
-      <span>결과: </span> <p>{result}</p>
+      <p>{result}</p>
+      <CopyToClipboard text={result}>
+        <button>복사</button>
+      </CopyToClipboard>
     </div>
   );
 }
