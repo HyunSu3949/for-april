@@ -12,11 +12,16 @@ export default function AddComma() {
   const onSubmit = (e) => {
     e.preventDefault();
     if (e.nativeEvent.submitter.innerText === "쉼표 추가") {
-      const result = state.split(" ").join(", ");
+      const result = state
+        .split(" ")
+        .map((word) => `${word},`)
+        .join(" ");
       setResult(result);
       setState("");
     } else if (e.nativeEvent.submitter.innerText === "중복제거 쉼표 추가") {
-      const result = [...new Set(state.split(" "))].join(", ");
+      const result = [...new Set(state.split(" "))]
+        .map((word) => `${word},`)
+        .join(" ");
       setResult(result);
       setState("");
     }
