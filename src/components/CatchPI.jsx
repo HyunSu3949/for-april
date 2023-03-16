@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard/src";
-import { Link } from "react-router-dom";
+import "./CatchPI.css";
 
 export default function CatchPI() {
   const [state, setState] = useState("");
@@ -23,7 +23,7 @@ export default function CatchPI() {
   };
 
   return (
-    <>
+    <div className="container">
       <form onSubmit={onSubmit}>
         <label htmlFor="PI">PI 골라내기</label>
         <textarea
@@ -34,14 +34,13 @@ export default function CatchPI() {
           onChange={onChange}
           value={state}
         ></textarea>
-        <button>변환하기</button>
+        <button className="pi_btn">변환하기</button>
       </form>
-      <span>결과: </span>
+      <span>변환값: </span>
       <div>{result.join(", ")}</div>
       <div>
         {result.map((i) => {
           const pi = i.trim();
-          console.log(pi, typeof pi);
           const link = `https://catalog-tools.coupang.net/quality/products/${pi}/items/detail`;
           return (
             <div>
@@ -53,8 +52,8 @@ export default function CatchPI() {
         })}
       </div>
       <CopyToClipboard text={result}>
-        <button>복사</button>
+        <button>변환값 복사</button>
       </CopyToClipboard>
-    </>
+    </div>
   );
 }
